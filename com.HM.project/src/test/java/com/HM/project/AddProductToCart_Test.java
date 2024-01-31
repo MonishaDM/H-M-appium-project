@@ -25,10 +25,12 @@ public class AddProductToCart_Test extends BaseClass {
 	
 public void addProduct() throws Throwable
 {
-		cp.product();
-		WebElement image = driver.findElement(AppiumBy.id("com.hm.goe:id/carouselPhotoView"));
-		gutil.zoomOut(image, 0.75);
+		cp.newproduct();
+		gutil.scroll("Denim popover shirt");
+		cp.viewProduct();
+		gutil.zoomIn(cp.getZoomImg(), 0.75);
 		cp.cart();
 }
 
 }
+//WebElement image = driver.findElement(AppiumBy.id("com.hm.goe:id/carouselPhotoView"));

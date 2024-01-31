@@ -3,35 +3,24 @@ package com.objectRepo;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
-import GenericUtilities.GestureUtility;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 
-public class CartPage {
+public class ProductPage {
 
 	AndroidDriver driver;
 	
 	@FindBy(id = "com.hm.goe:id/text_vignette")
 	private WebElement newArrivalsBtn;
 	
-	@FindBy(xpath = "//android.widget.TextView[@text='Denim popover shirt']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Sleeveless denim dress']")
 	private WebElement product;
 	
-	@FindBy(id = "com.hm.goe:id/carouselImage")
-	private WebElement productImage;
+	@FindBy(xpath = "//android.widget.TextView[@text='Rs. 2,999.00']")
+	private WebElement productValue;
 	
-	@FindBy(id = "com.hm.goe:id/carouselPhotoView")
-	private WebElement zoomImg;
-	
-	public WebElement getZoomImg() {
-		return zoomImg;
-	}
-
-	public WebElement getCloseImg() {
-		return closeImg;
-	}
-	@FindBy(id = "com.hm.goe:id/ivCloseCarousel")
-	private WebElement closeImg;
 	
 	@FindBy(id = "com.hm.goe:id/buttonText")
 	private WebElement addBtn;
@@ -45,10 +34,9 @@ public class CartPage {
 	@FindBy(id = "com.hm.goe:id/hm_shoppingbag_count")
 	private WebElement bagBtn;
 	
-	public CartPage(AndroidDriver driver) {
-		this.driver=driver;
-		PageFactory.initElements( driver, this);
-	}
+	@FindBy(xpath = "//android.widget.TextView[@text='Rs. 2,999.00']")
+	private WebElement cartValue;
+	
 	
 	public AndroidDriver getDriver() {
 		return driver;
@@ -62,8 +50,8 @@ public class CartPage {
 		return product;
 	}
 
-	public WebElement getProductImage() {
-		return productImage;
+	public WebElement getProductValue() {
+		return productValue;
 	}
 
 	public WebElement getAddBtn() {
@@ -82,27 +70,27 @@ public class CartPage {
 		return bagBtn;
 	}
 
-	public void newproduct() throws Throwable 
-	{
-		newArrivalsBtn.click();
-		Thread.sleep(2000);
-		
+	public WebElement getCartValue() {
+		return cartValue;
+	}
+
+	public ProductPage(AndroidDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements( driver,this);
 	}
 	
-	public void viewProduct() throws Throwable
-	{
+	public void addProduct() throws Throwable {
+		newArrivalsBtn.click();
 		product.click();
-		productImage.click();
-		Thread.sleep(2000);
-	}
-	public void cart() throws Throwable
-	{
-		closeImg.click();
-		addBtn.click();
-		Thread.sleep(3000);
-		sizeBtn.click();
-		addToCartBtn.click();
-		bagBtn.click();
-		System.out.println("Product added to cart successfully");
+        productValue.getText();
+        addBtn.click();
+        sizeBtn.click();
+        addToCartBtn.click();
+        Thread.sleep(5000);
+        bagBtn.click();
+		cartValue.getText();
+		Assert.assertEquals(productValue, cartValue);
+		System.out.println("The product has same value");
+		
 	}
 }

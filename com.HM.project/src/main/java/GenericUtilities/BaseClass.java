@@ -13,14 +13,9 @@ import org.testng.annotations.BeforeSuite;
 
 import com.objectRepo.CartPage;
 import com.objectRepo.CategoriesPage;
-import com.objectRepo.ChatboxPage;
-import com.objectRepo.FavoritePage;
 import com.objectRepo.FilterPage;
-import com.objectRepo.FollowUsPage;
-import com.objectRepo.InboxPage;
 import com.objectRepo.LoginPage;
-import com.objectRepo.SearchPage;
-import com.objectRepo.SustainabilityPage;
+import com.objectRepo.ProductPage;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -35,14 +30,9 @@ public class BaseClass {
 	public FileUtility futil = new FileUtility();
 	public AppiumDriverLocalService service;
 	public CartPage cp;
-	public ChatboxPage cbp;
-	public FavoritePage favp;
 	public FilterPage filp;
-	public FollowUsPage fup;
-	public InboxPage ip;
 	public LoginPage lp;
-	public SearchPage sp;
-	public SustainabilityPage susp;
+	public ProductPage prp;
 	public CategoriesPage ctpg;
 	
 	@BeforeSuite
@@ -58,13 +48,13 @@ public class BaseClass {
 	@BeforeClass
 	public void startApp() throws Throwable {
 		DesiredCapabilities dc = new DesiredCapabilities();
-		dc.setCapability("platformName", futil.dataFromPropertyFile("Android"));
-		dc.setCapability("deviceName", futil.dataFromPropertyFile("Redmi 11T"));
-		dc.setCapability("automationName", futil.dataFromPropertyFile("UiAutomator2"));
-		dc.setCapability("UDID", futil.dataFromPropertyFile("M7WGS48XZ9VSHMXO"));
+		dc.setCapability("platformName", futil.dataFromPropertyFile("platformName"));
+		dc.setCapability("deviceName", futil.dataFromPropertyFile("deviceName"));
+		dc.setCapability("automationName", futil.dataFromPropertyFile("automationName"));
+		dc.setCapability("UDID", futil.dataFromPropertyFile("UDID"));
 		
-		dc.setCapability("appPackage", futil.dataFromPropertyFile("com.hm.goe"));
-		dc.setCapability("appActivity", futil.dataFromPropertyFile(".app.home.HomeActivity"));
+		dc.setCapability("appPackage", futil.dataFromPropertyFile("appPackage"));
+		dc.setCapability("appActivity", futil.dataFromPropertyFile("appActivity"));
 		
 		URL u = new URL("http://localhost:4723");
 		
@@ -78,14 +68,9 @@ public class BaseClass {
 		gutil = new GestureUtility(driver);
 		dutil = new DriverUtility(driver);
 		cp = new CartPage(driver);
-		cbp = new ChatboxPage(driver);
-		favp = new FavoritePage(driver);
 		filp = new FilterPage(driver);
-		fup = new FollowUsPage(driver);
-		ip = new InboxPage(driver);
 		lp = new LoginPage(driver);
-		sp = new SearchPage(driver);
-		susp = new SustainabilityPage(driver);
+		prp = new ProductPage(driver);
 		ctpg = new CategoriesPage(driver);
 		
 	}

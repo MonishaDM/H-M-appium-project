@@ -24,7 +24,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
-public class FilterCondition_Test{
+public class FilterCondition_Test extends BaseClass{
 	
 	@Test
 	public void filter() throws Throwable
