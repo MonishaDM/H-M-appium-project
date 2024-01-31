@@ -103,6 +103,7 @@ public class BaseClass {
 	@AfterSuite
 	public void stopServer() {
 		service.stop();
+		System.out.println("Server stopped");
 	}
 	
 }
